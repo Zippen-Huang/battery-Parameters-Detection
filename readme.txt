@@ -1,36 +1,35 @@
-ÊµÑéÆ÷²Ä:
-	Ì½Ë÷ÕßSTM32F4¿ª·¢°å
-	
-ÊµÑéÄ¿µÄ:
-	Ñ§Ï°´®¿ÚµÄÊ¹ÓÃ(½ÓÊÕÓë·¢ËÍ)
-	
-Ó²¼ş×ÊÔ´:
-	1,DS0(Á¬½ÓÔÚPF9) 
-	2,´®¿Ú1(²¨ÌØÂÊ:115200,PA9/PA10Á¬½ÓÔÚ°åÔØUSB×ª´®¿ÚĞ¾Æ¬CH340ÉÏÃæ)
-	
-	
-ÊµÑéÏÖÏó:
-	±¾ÊµÑé,STM32Í¨¹ı´®¿Ú1ºÍÉÏÎ»»ú¶Ô»°£¬STM32ÔÚÊÕµ½ÉÏÎ»»ú·¢¹ıÀ´µÄ×Ö·û´®(ÒÔ»Ø³µ»»
-	ĞĞ½áÊø)ºó£¬Ô­Ô­±¾±¾µÄ·µ»Ø¸øÉÏÎ»»ú¡£ÏÂÔØºó£¬DS0ÉÁË¸£¬ÌáÊ¾³ÌĞòÔÚÔËĞĞ£¬Í¬Ê±Ã¿¸ô
-	Ò»¶¨Ê±¼ä£¬Í¨¹ı´®¿Ú1Êä³öÒ»¶ÎĞÅÏ¢µ½µçÄÔ¡£ 
-	
-×¢ÒâÊÂÏî:
-	1,µçÄÔ¶Ë´®¿Úµ÷ÊÔÖúÊÖ²¨ÌØÂÊ±ØĞëÊÇ115200.
-	2,ÇëÊ¹ÓÃXCOM/SSCOM´®¿Úµ÷ÊÔÖúÊÖ,ÆäËû´®¿ÚÖúÊÖ¿ÉÄÜ¿ØÖÆDTR/RTSµ¼ÖÂMCU¸´Î»/³ÌĞò²»ÔËĞĞ
-	3,´®¿ÚÊäÈë×Ö·û´®ÒÔ»Ø³µ»»ĞĞ½áÊø.
-	4,ÇëÓÃUSBÏßÁ¬½ÓÔÚUSB_232,ÕÒµ½USB×ª´®¿Úºó²âÊÔ±¾Àı³Ì.
-	5,P6µÄPA9/PA10±ØĞëÍ¨¹ıÌøÏßÃ±Á¬½ÓÔÚRXD/TXDÉÏ.
+abstract: read bateery parateters, inculding voltage, electric current, the rest of energy and power, form LT-211 module by stm32f407. 
+
+hardware:stm32f407; lith-baterry; baterry measuerment module LT-211: https://item.taobao.com/item.htm?spm=a1z09.2.0.0.f02f2e8dyfBUSX&id=17807208004&_u=61sqvu1j8b97
+
+brief theory: LT-211 support MODBUS communication protocol, and just send pre-defined cmd char array to LT-211 by stm32f407 usart(default: usart3), and read returned cmd char array by stm32 usart buffer, and then extract message from char array by bit movement operation. 
+
+comment: I just use MODBUS communication protocol simplely, and did not use CRC check codeã€‚
 
 
-					ÕıµãÔ­×Ó@ALIENTEK
-					2014-10-24
-					¹ãÖİÊĞĞÇÒíµç×Ó¿Æ¼¼ÓĞÏŞ¹«Ë¾
-					µç»°£º020-38271790
-					´«Õæ£º020-36773971
-					¹ºÂò£ºhttp://shop62103354.taobao.com
-					http://shop62057469.taobao.com
-					¹«Ë¾ÍøÕ¾£ºwww.alientek.com
-					¼¼ÊõÂÛÌ³£ºwww.openedv.com
+å®éªŒå™¨æ:
+	æ¢ç´¢è€…STM32F4å¼€å‘æ¿
+	
+å®éªŒç›®çš„:
+	å­¦ä¹ ä¸²å£çš„ä½¿ç”¨(æ¥æ”¶ä¸å‘é€)
+	
+ç¡¬ä»¶èµ„æº:
+	1,DS0(è¿æ¥åœ¨PF9) 
+	2,ä¸²å£1(æ³¢ç‰¹ç‡:115200,PA9/PA10è¿æ¥åœ¨æ¿è½½USBè½¬ä¸²å£èŠ¯ç‰‡CH340ä¸Šé¢)
+	
+	
+å®éªŒç°è±¡:
+	æœ¬å®éªŒ,STM32é€šè¿‡ä¸²å£1å’Œä¸Šä½æœºå¯¹è¯ï¼ŒSTM32åœ¨æ”¶åˆ°ä¸Šä½æœºå‘è¿‡æ¥çš„å­—ç¬¦ä¸²(ä»¥å›è½¦æ¢
+	è¡Œç»“æŸ)åï¼ŒåŸåŸæœ¬æœ¬çš„è¿”å›ç»™ä¸Šä½æœºã€‚ä¸‹è½½åï¼ŒDS0é—ªçƒï¼Œæç¤ºç¨‹åºåœ¨è¿è¡Œï¼ŒåŒæ—¶æ¯éš”
+	ä¸€å®šæ—¶é—´ï¼Œé€šè¿‡ä¸²å£1è¾“å‡ºä¸€æ®µä¿¡æ¯åˆ°ç”µè„‘ã€‚ 
+	
+æ³¨æ„äº‹é¡¹:
+	1,ç”µè„‘ç«¯ä¸²å£è°ƒè¯•åŠ©æ‰‹æ³¢ç‰¹ç‡å¿…é¡»æ˜¯115200.
+	2,è¯·ä½¿ç”¨XCOM/SSCOMä¸²å£è°ƒè¯•åŠ©æ‰‹,å…¶ä»–ä¸²å£åŠ©æ‰‹å¯èƒ½æ§åˆ¶DTR/RTSå¯¼è‡´MCUå¤ä½/ç¨‹åºä¸è¿è¡Œ
+	3,ä¸²å£è¾“å…¥å­—ç¬¦ä¸²ä»¥å›è½¦æ¢è¡Œç»“æŸ.
+	4,è¯·ç”¨USBçº¿è¿æ¥åœ¨USB_232,æ‰¾åˆ°USBè½¬ä¸²å£åæµ‹è¯•æœ¬ä¾‹ç¨‹.
+	5,P6çš„PA9/PA10å¿…é¡»é€šè¿‡è·³çº¿å¸½è¿æ¥åœ¨RXD/TXDä¸Š.
+
 					
 					
 					
